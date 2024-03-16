@@ -27,10 +27,13 @@ for i in range(max_attempts):
         continue
 
     # Agregar la letra a la lista de letras adivinadas
-    guessed_letters.append(letter)
+    if(letter != "" and letter != '\n' and letter != " "):
+        guessed_letters.append(letter)
 
     # Verificar si la letra está en la palabra secreta
-    if letter in secret_word:
+    if (letter == "" or letter == '\n' or letter == " "): 
+        print('Lo siento, No ha ingresado una letra')
+    elif letter in secret_word:
         print("¡Bien hecho! La letra está en la palabra.")
     else:
         print("Lo siento, la letra no está en la palabra.")
