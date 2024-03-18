@@ -19,6 +19,32 @@ word_displayed = "_" * len(secret_word)
 # Mostrarla palabra parcialmente adivinada
 print(f"Palabra: {word_displayed}")
 
+letters = []
+level= input("Elegir un nivel de dificultad (Facil, Medio o Dificil): ")
+if(level == 'Facil'):
+    for letter in secret_word:
+        if (letter == 'a' or letter == 'e' or letter == 'i' or letter == 'o' or letter == 'u' or letter == 'ó'):
+            letters.append(letter)
+            guessed_letters.append(letter)
+        else:
+            letters.append("_")
+    word_displayed = "".join(letters)
+    print(f"Palabra: {word_displayed}")
+
+else:
+    if(level == 'Medio'):
+        guessed_letters.append(secret_word[0])
+        length= len(secret_word)
+        guessed_letters.append(secret_word[length-1])
+    for letter in secret_word:
+        if letter == secret_word[0] or letter == secret_word[length-1]:
+            letters.append(letter)
+        else:
+            letters.append("_")
+
+    word_displayed = "".join(letters)
+    print(f"Palabra: {word_displayed}")
+    
 #Permite el ingreso mientras tenga fallos
 while (cant < max_attempts and not won):
     # Pedir al jugador que ingrese una letra
@@ -58,7 +84,7 @@ while (cant < max_attempts and not won):
     # Verificar si se ha adivinado la palabra completa
     if word_displayed == secret_word:
         print(f"¡Felicidades! Has adivinado la palabra secreta: {secret_word}")
-        won= Truei
+        won= True
 
         break
 else:
